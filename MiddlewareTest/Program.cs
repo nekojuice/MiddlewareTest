@@ -13,17 +13,17 @@ var app = builder.Build();
 
 Console.WriteLine("PIG: app built");
 // -----
-app.Use(async (context, next) =>
-{
-    Console.WriteLine("PIG: 1 start");
+//app.Use(async (context, next) =>
+//{
+//    Console.WriteLine("PIG: 1 start");
 
-    await next.Invoke();
+//    await next.Invoke();
 
-    Console.WriteLine("PIG: 1 end");
-});
-app.UseMiddleware<CatMiddleware>();
-app.UseMiddleware<DogMiddleware>();
-//app.UseCATCATMiddleware();
+//    Console.WriteLine("PIG: 1 end");
+//});
+//app.UseMiddleware<CatMiddleware>();
+//app.UseMiddleware<DogMiddleware>();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

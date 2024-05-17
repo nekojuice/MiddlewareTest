@@ -1,9 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using MiddlewareTest.Filter;
 
 namespace MiddlewareTest.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -18,6 +21,7 @@ namespace MiddlewareTest.Controllers
             _logger = logger;
         }
 
+
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
@@ -29,5 +33,9 @@ namespace MiddlewareTest.Controllers
             })
             .ToArray();
         }
+
+        [NKJActionFilter]
+        [HttpGet]
+        public async Task<IActionResult> GetCat() => Ok();
     }
 }
